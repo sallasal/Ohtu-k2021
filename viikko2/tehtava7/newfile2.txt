@@ -1,3 +1,5 @@
 This is new file for branch 2.
 
 Now I edit this file.
+
+Now I edit this from main branch, from my main remote folder.
