@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 import ohtu.io.*;
 import ohtu.data_access.*;
 import ohtu.services.*;
+import ohtu.domain.*;
 
 public class Stepdefs {
     App app;
@@ -28,6 +29,16 @@ public class Stepdefs {
     @Given("^command login is selected$")
     public void commandLoginSelected() throws Throwable {
         inputLines.add("login");
+    }
+    
+    @Given("^command new is selected$")
+    public void commandNewSelected() throws Throwable {
+        inputLines.add("new");
+    }
+    
+    @When("user {string} with password {string} is created")
+    public void newUserIsCreatedWithParameters(String username, String password) {
+        userDao.add(new User(username, password));
     }
 
     @When("username {string} and password {string} are entered")
