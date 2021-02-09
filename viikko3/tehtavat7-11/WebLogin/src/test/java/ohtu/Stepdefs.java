@@ -24,13 +24,6 @@ public class Stepdefs {
         element.click();
     }
 
-    @Given("command new user is selected")
-    public void newUserIsSelected() {
-        driver.get(baseUrl);
-        WebElement element = driver.findElement(By.linkText("register new user"));
-        element.click();
-    }
-
     @When("correct username {string} and password {string} are given")
     public void correctUsernameAndPasswordAreGiven(String username, String password) {
         logInWith(username, password);
@@ -55,6 +48,13 @@ public class Stepdefs {
     public void userIsNotLoggedInAndErrorMessageIsGiven() {
         pageHasContent("invalid username or password");
         pageHasContent("Give your credentials to login");
+    }
+
+    @Given("command new user is selected")
+    public void newUserIsSelected() {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
     }
 
     @When("a valid username {string} and password {string} and matching password confirmation are entered")
@@ -85,6 +85,20 @@ public class Stepdefs {
     @Then("user is not created and error {string} is reported")
     public void newUserIsNotCreated(String errorMessage) {
         pageHasContent(errorMessage);
+    }
+    
+    @Given("user with username {string} with password {string} is successfully created")
+    public void userWithValidUsernameAndPasswordCanLogin(String username, String password) {
+        newUserIsSelected();
+        registerWith(username, password, password);
+        newUserIsCreated();
+    }
+    
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void userCantLoginWithAccountNotCreated(String username, String password) {
+        newUserIsSelected();
+        registerWith(username, password, password);
+        newUserIsNotCreated("username should have at least 3 characters");
     }
 
     @After
