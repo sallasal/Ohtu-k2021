@@ -17,37 +17,8 @@ public class Erotus extends Komento {
         
         sovellus.miinus(Integer.valueOf(syotekentta.getText()));
 
-        int laskunTulos = sovellus.tulos();
-
-        syotekentta.setText("");
-        tuloskentta.setText("" + laskunTulos);
-
-        if (laskunTulos == 0) {
-            nollaa.disableProperty().set(true);
-        } else {
-            nollaa.disableProperty().set(false);
-        }
-        undo.disableProperty().set(false);
-    }
-
-    @Override
-    public void peru() {
-        sovellus.setTulos(super.getEdellinen());
-
-        int laskunTulos = sovellus.tulos();
-
-        syotekentta.setText("");
-        tuloskentta.setText("" + laskunTulos);
-
-        if (laskunTulos == 0) {
-            nollaa.disableProperty().set(true);
-        } else {
-            nollaa.disableProperty().set(false);
-        }
-        undo.disableProperty().set(false);
-
-    }
-    
+        super.asetaTulos();
+    }   
     
     
 }
