@@ -11,7 +11,10 @@ public class QueryBuilder {
     }
     
     public Matcher build() {
-        return matcher;
+        Matcher returnable = this.matcher;
+        this.matcher = new All();
+        return returnable;
+        
     }
     
     public QueryBuilder playsIn(String team) {
@@ -26,6 +29,11 @@ public class QueryBuilder {
     
     public QueryBuilder hasFewerThan(int value, String category) {
         this.matcher = new And(new HasFewerThan(value, category), matcher);
+        return this;
+    }
+    
+    public QueryBuilder oneOf(Matcher matcher1, Matcher matcher2) {
+        this.matcher = new Or(matcher1, matcher2);
         return this;
     }
 }
