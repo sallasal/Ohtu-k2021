@@ -26,8 +26,15 @@ public abstract class KiviPaperiSakset {
 
             System.out.println("Ensimmäisen pelaajan siirto: ");
             ekanSiirto = ensimmaisenSiirto();
+            if (!onkoOkSiirto(ekanSiirto)) {
+                break;
+            }
+
             System.out.println("Toisen pelaajan siirto: ");
             tokanSiirto = toisenSiirto();
+            if (!onkoOkSiirto(tokanSiirto)) {
+                break;
+            }
         }
 
         System.out.println();
